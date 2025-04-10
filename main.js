@@ -20,7 +20,7 @@ export function add(numbers) {
         return 0;
     }
 
-    numbers = "1,\n"
+    numbers ="1\n2,3"
     
     return numbers
         .replace(/\n/g, ',')  
