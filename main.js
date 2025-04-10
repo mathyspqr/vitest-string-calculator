@@ -80,6 +80,36 @@
 // }
 
 //7.
+// export function add(numbers) {
+//     if(numbers === '') {
+//         return 0;
+//     }
+
+//     let delimiter = ',';
+//     let numbersToProcess = numbers;
+
+//     if (numbers.startsWith('//')) {
+//         const parts = numbers.split('\n');
+//         delimiter = parts[0].substring(2);
+//         numbersToProcess = parts[1];
+//     }
+
+//     const nums = numbersToProcess
+//         .replace(/\n/g, delimiter)
+//         .split(delimiter)
+//         .map(num => parseInt(num));
+    
+//     const negatives = nums.filter(n => n < 0);
+//     if (negatives.length > 0) {
+//         throw new Error(`Negatives not allowed: ${negatives.join(', ')}`);
+//     }
+
+//     return nums
+//         .filter(n => n <= 1000) 
+//         .reduce((sum, num) => sum + num, 0);
+// }
+
+//8.
 export function add(numbers) {
     if(numbers === '') {
         return 0;
@@ -90,7 +120,11 @@ export function add(numbers) {
 
     if (numbers.startsWith('//')) {
         const parts = numbers.split('\n');
-        delimiter = parts[0].substring(2);
+        if (parts[0].startsWith('//[') && parts[0].endsWith(']')) {
+            delimiter = parts[0].substring(3, parts[0].length - 1);
+        } else {
+            delimiter = parts[0].substring(2);
+        }
         numbersToProcess = parts[1];
     }
 
@@ -105,7 +139,7 @@ export function add(numbers) {
     }
 
     return nums
-        .filter(n => n <= 1000) 
+        .filter(n => n <= 1000)
         .reduce((sum, num) => sum + num, 0);
 }
 
